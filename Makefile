@@ -1,2 +1,6 @@
-all:
-	echo "Stub"
+all: samenvatting.pdf
+
+samenvatting.pdf: *.tex
+	./create.sh
+	./view.sh
+
