@@ -6,4 +6,4 @@
 #
 #   ./view.sh
 #
-qpdfview samenvatting.pdf
+evince samenvatting.pdf
