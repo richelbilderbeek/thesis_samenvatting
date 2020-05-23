@@ -3,7 +3,7 @@
 library(ape)
 library(ggtree)
 
-phylogeny <- ape::read.tree(text = "((mens:1,aap:1):1,dolfijn:2):1;")
+phylogeny <- ape::read.tree(text = "((mens:1,gorrila:1):1,dolfijn:2):1;")
 
 ggtree::ggtree(phylogeny, cex = 2) +
   ggtree::geom_tiplab(

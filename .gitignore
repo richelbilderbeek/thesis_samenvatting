@@ -275,3 +275,5 @@ TSWLatexianTemp*
 # Makeindex log files
 *.lpz
 samenvatting.pdf
+Rplots.pdf
+fylogenie.png
