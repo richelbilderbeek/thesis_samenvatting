@@ -1,23 +1,26 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+language: generic
+dist: bionic
 
-language: R
-cache: packages
-
-r_packages:
-  - dplyr
-  - gh
-  - ggplot2
-  - xtable
-
-r_github_packages:
-  - ropensci/spelling
+install:
+  # Newer tools
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
+  # spell
+  - apt-cache search spell
+  - sudo apt install spell
+  # proselint
+  - sudo pip install proselint
+  # pandoc
+  - sudo apt install pandoc 
+  # imagemagick
+  - sudo apt install imagemagick
+  # PDF creation
+  - sudo apt install texlive-latex-recommended texlive-latex-extra texlive-fonts-extra texlive-fonts-recommended texlive-extra-utils texlive-humanities texlive-full texlive-games texlive-pictures texlive-science texlive-xetex ktikz
+  # No: pgf
 
 script:
-  - echo "Stub"
-  #- make
-
-after_script:
-  #- Rscript -e 'spelling::spell_check_files("introduction.tex", ignore = readLines("inst/WORDLIST"))'
-  # Same, but gives an error if spellcheck fails
-  #- spelling_errors=$(Rscript -e 'spelling::spell_check_files("introduction.tex", ignore = readLines("inst/WORDLIST"))') ; [ "$spelling_errors" == "No spelling errors found." ]
+  # proselint
+  - proselint $(find | grep .*\.md) | egrep -v "curly_quotes" || true
+  # Build article
+  - make
 
